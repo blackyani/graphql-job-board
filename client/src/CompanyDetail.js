@@ -1,20 +1,28 @@
-import React, { Component } from 'react';
-import { companies } from './fake-data';
+import React, { useState, useEffect } from 'react';
+import {fetchCompany} from "./requests";
+import { Link } from 'react-router-dom';
 
-export class CompanyDetail extends Component {
-  constructor(props) {
-    super(props);
-    const {companyId} = this.props.match.params;
-    this.state = {company: companies.find((company) => company.id === companyId)};
-  }
+const CompanyDetail = (props) => {
+  const [company, setData] = useState(null);
+  useEffect(() => {
+    const {companyId} = props.match.params;
+    fetchCompany(companyId).then(response => {
+      setData(response)
+    });
+  }, []);
 
-  render() {
-    const {company} = this.state;
+  const jobsList = company?.jobs?.length && company.jobs.map((job) => (<p><Link to={`/jobs/${job.id}`} key={job.id} tag="p">{job.title}</Link></p>))
+
     return (
-      <div>
-        <h1 className="title">{company.name}</h1>
-        <div className="box">{company.description}</div>
-      </div>
+        <div>
+          {
+            company ? <><h1 className="title">{company.name}</h1>
+              <div className="box">{company.description}</div>
+              {jobsList}
+            </> : null
+          }
+        </div>
     );
-  }
-}
+};
+
+export default CompanyDetail;

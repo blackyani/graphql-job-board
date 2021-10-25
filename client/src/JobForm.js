@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {postJob} from "./requests";
 
 export class JobForm extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ export class JobForm extends Component {
 
   handleClick(event) {
     event.preventDefault();
-    console.log('should post a new job:', this.state);
+    postJob(this.state);
   }
 
   render() {

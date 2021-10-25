@@ -1,14 +1,23 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { JobList } from './JobList';
-const { jobs } = require('./fake-data');
+import {fetchJobs} from "./requests";
 
-export class JobBoard extends Component {
-  render() {
+const JobBoard = () => {
+    const [jobs, setJobs] = useState([]);
+    useEffect(() => {
+        fetchJobs().then((response => {
+            if (response?.length) {
+                setJobs(response);
+            }
+        }));
+    }, [])
+
     return (
-      <div>
-        <h1 className="title">Job Board</h1>
-        <JobList jobs={jobs} />
-      </div>
+        <div>
+            <h1 className="title">Job Board</h1>
+            {jobs?.length ? <JobList jobs={jobs} /> : <h1>Loading...</h1>}
+        </div>
     );
-  }
 }
+
+export default JobBoard;

@@ -1,0 +1,27 @@
+{
+  "name": "graphql-job-board",
+  "version": "1.0.0",
+  "description": "Sample application used in the GraphQL by Example course.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "npm start --prefix server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uptoskill/graphql-job-board.git"
+  },
+  "author": "Yan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uptoskill/graphql-job-board/issues"
+  },
+  "homepage": "https://github.com/uptoskill/graphql-job-board#readme",
+  "dependencies": {
+    "apollo-server-core": "^3.3.0",
+    "apollo-server-express": "^2.0.0",
+    "graphql": "^15.6.1"
+  }
+}

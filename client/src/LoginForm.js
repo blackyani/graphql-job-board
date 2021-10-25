@@ -4,7 +4,7 @@ import { login } from './auth';
 export class LoginForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {email: '', password: '', error: false};
+    this.state = {email: 'bob@goobook.co', password: 'bob123', error: false};
   }
 
   handleChange(event) {
